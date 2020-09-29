@@ -1,0 +1,35 @@
+<ion-header [translucent]="true" no-border>
+  <ion-toolbar>
+    <ion-title>
+      Clientes Concurrentes
+    </ion-title>
+  </ion-toolbar>
+  <ion-searchbar 
+    placeholder="Buscar por camarero" 
+    inputmode="text"
+    (ionChange)="onSearchChange($event)"
+    animated></ion-searchbar>
+
+</ion-header>
+
+<ion-content [fullscreen]="true" >
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col size="12" size-lg="3" size-md="4" size-sm="6" size-xs="12"
+        *ngFor="let item of rptCustomer | filtro:filter:'Nombre'">
+
+        <ion-card>
+          <ion-card-header>
+            <ion-card-subtitle>
+              <p class="text-primary">Total:</p>
+            </ion-card-subtitle>
+            <ion-card-title class="st-total"> {{ item.Total | currency }}</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <p>{{  item.Nombre }} {{ item.Apellido1 }} {{ item.Apellido2 }}</p>
+          </ion-card-content>
+        </ion-card>        
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
