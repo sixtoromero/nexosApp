@@ -44,6 +44,7 @@ export class Tab3Page implements OnInit {
     .subscribe(resp => {
       this.loading.dismiss();
       if (resp['IsSuccess']) {
+        this.lstCamarero = [];
         this.lstCamarero.push(...resp['Data']);
       }
     }, err=>{
@@ -138,9 +139,7 @@ export class Tab3Page implements OnInit {
 
     await modal.present();
 
-    const { data } = await modal.onDidDismiss();
-    
-    console.log('DATA', data);
+    const { data } = await modal.onDidDismiss();    
 
     if (data) {
       if (data["ModalProcess"]) {

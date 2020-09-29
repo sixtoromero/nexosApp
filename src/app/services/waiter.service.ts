@@ -21,6 +21,10 @@ export class WaiterService {
 
   constructor(private http: HttpClient) { }
 
+  insert(model: CamareroModel): Observable<Observable<ResponseModel<string>>> {
+    return this.http.post<Observable<ResponseModel<string>>>(`${this.endPoint}/InsertAsync`, model, httpOptions);
+  }
+
   delete(Id: number): Observable<Observable<ResponseModel<string>>> {
     return this.http.delete<Observable<ResponseModel<string>>>(`${this.endPoint}/DeleteAsync/${Id}`, httpOptions);
   }

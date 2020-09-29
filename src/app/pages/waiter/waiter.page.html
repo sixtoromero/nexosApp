@@ -7,13 +7,13 @@
 </ion-header>
 
 <ion-content padding='true'>  
-  <form (ngSubmit)="registro(fregistro)" #fregistro="ngForm">
+  <form [formGroup]="regForm">
     <ion-list>
       <ion-item>
         <ion-label position="floating">Id</ion-label>
         <ion-input 
               autocomplete="off" 
-              name="IdCamarero"
+              formControlName="IdCamarero"
               type="text"      
               readonly="readonly"
               required>
@@ -24,37 +24,46 @@
         <ion-label position="floating">Nombres</ion-label>
         <ion-input 
               autocomplete="off" 
-              name="Nombres"
+              formControlName="Nombre"
               type="text"               
               required>
         </ion-input>        
         <ion-icon name="reader-outline" slot="start"></ion-icon>
       </ion-item>
+      <div *ngIf="f.Nombre.errors && (f.Nombre.dirty || f.Nombre.touched)" class="invalid-feedback">
+        <div>* El Nombre completo es requerido</div>
+      </div>
       <ion-item>
         <ion-label position="floating">Primer Apellido</ion-label>
         <ion-input 
               autocomplete="off"
-              name="Apellido1"              
+              formControlName="Apellido1"
               type="text"
               required></ion-input>
               <ion-icon name="reader-outline" slot="start"></ion-icon>
       </ion-item>
+      <div *ngIf="f.Apellido1.errors && (f.Apellido1.dirty || f.Apellido1.touched)" class="invalid-feedback">
+        <div>* El primer Apellido es requerido</div>
+      </div>
       <ion-item>
         <ion-label position="floating">Segundo Apellido</ion-label>
         <ion-input 
               autocomplete="off"
-              name="Apellido2"              
+              formControlName="Apellido2"
               type="text"
               required></ion-input>
               <ion-icon name="reader-outline" slot="start"></ion-icon>
       </ion-item>      
+      <div *ngIf="f.Apellido2.errors && (f.Apellido2.dirty || f.Apellido2.touched)" class="invalid-feedback">
+        <div>* El segundo Apellido es requerido</div>
+      </div>
     </ion-list>    
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+      <ion-fab-button [disabled]="!regForm.valid" (click)="registro()">
+        <ion-icon name="save-outline"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
   </form>
-
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button [disabled]="fregistro.invalid">
-      <ion-icon name="save-outline"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
+  
 
 </ion-content>
